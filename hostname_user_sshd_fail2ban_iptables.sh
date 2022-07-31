@@ -26,10 +26,6 @@ cp -r ~/.ssh/ /home/"$USERNAME"/ && chown "$USERNAME":"$USERNAME" /home/"$USERNA
 
 apt-get update && apt-get upgrade -y && apt-get install -y iptables nano curl mc htop jq bc cron
 
-
-curl -s https://raw.githubusercontent.com/Staketab/mina-tools/main/libs-20.04/install.sh | bash
-
-
 ## SETHOSTNAME
 
 hostnamectl set-hostname "$HOSTNAME" && hostnamectl
