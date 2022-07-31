@@ -12,6 +12,10 @@ echo "$PSWD"
 echo "SSH Port"
 read -p "SSHPort: " SSHPort
 
+## Install packets
+
+apt-get update && apt-get upgrade -y && apt-get install -y iptables nano curl mc htop jq bc cron
+
 ## USERADD
 
 useradd -m -U -s /bin/bash -G sudo minadmin
@@ -23,8 +27,6 @@ EOD
 PSWD=''
 
 cp -r ~/.ssh/ /home/"$USERNAME"/ && chown "$USERNAME":"$USERNAME" /home/"$USERNAME"/.ssh/ -R
-
-apt-get update && apt-get upgrade -y && apt-get install -y iptables nano curl mc htop jq bc cron
 
 ## SETHOSTNAME
 
