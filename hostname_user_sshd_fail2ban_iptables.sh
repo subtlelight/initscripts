@@ -231,4 +231,9 @@ logpath = %(sshd_log)s
 backend = %(sshd_backend)s ' >> /etc/fail2ban/jail.local
 systemctl restart fail2ban
 
+echo
+echo
+echo
+echo
+## SHOW RESULTS
 hostnamectl && echo && lslogins -u && echo && iptables -vnL && systemctl status fail2ban && systemctl status sshd
