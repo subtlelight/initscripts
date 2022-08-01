@@ -50,7 +50,7 @@ Port "$SSHPort"
 PermitRootLogin no
 ClientAliveInterval 3600
 ClientAliveCountMax 1
-AllowUsers minadmin
+AllowUsers "$USERNAME"
 MaxAuthTries 3
 PasswordAuthentication no
 ChallengeResponseAuthentication no
