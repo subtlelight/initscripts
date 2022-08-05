@@ -11,6 +11,8 @@ read -p "PSWD: " PSWD
 echo "$PSWD"
 echo "SSH Port"
 read -p "SSHPort: " SSHPort
+echo "Open other TCP Ports?"
+read -p "Other open TCP ports, delimit with comma, or set port range with dash [ 8302,1024-65525]: " OpenPorts
 
 ## Install packets
 
@@ -172,7 +174,11 @@ $ip6t -A INPUT -p tcp --dport 8302 -j ACCEPT
 
 $ipt -A INPUT -p tcp --dport '"$SSHPort"' -j ACCEPT
 
-$ip6t -A INPUT -p tcp --dport '"$SSHPort"' -j ACCEPT ' > /etc/network/if-up.d/iptables-rules
+$ip6t -A INPUT -p tcp --dport '"$SSHPort"' -j ACCEPT
+
+$ipt -A INPUT -p tcp --dport '"$OpenPorts"' -j ACCEPT
+
+$ip6t -A INPUT -p tcp --dport '"$OpenPorts"' -j ACCEPT ' > /etc/network/if-up.d/iptables-rules
 
 
 bash /etc/network/if-up.d/iptables-rules
