@@ -20,7 +20,7 @@ apt-get update && apt-get upgrade -y && apt-get install -y iptables nano curl mc
 
 ## USERADD
 
-useradd -m -U -s /bin/bash -G sudo minadmin
+useradd -m -U -s /bin/bash -G sudo $USERNAME
 passwd ${USERNAME} << EOD
 ${PSWD}
 ${PSWD}
@@ -28,7 +28,7 @@ EOD
 
 PSWD=''
 
-cp -r ~/.ssh/ /home/"$USERNAME"/ && chown "$USERNAME":"$USERNAME" /home/"$USERNAME"/.ssh/ -R
+cp -r ~/.ssh/ /home/"$USERNAME"/.ssh && chown "$USERNAME":"$USERNAME" /home/"$USERNAME"/.ssh/ -R
 
 ## SETHOSTNAME
 
@@ -168,9 +168,6 @@ $ip6t -A OUTPUT -m conntrack --ctstate NEW,ESTABLISHED,RELATED -j ACCEPT
 # $ipt -A OUTPUT -p udp -d 62.149.128.4,62.149.132.4,8.8.8.8,8.8.4.4 --dport 53 --sport 1024:65535
 # $ip6t -A OUTPUT -p tcp -d 2001:4860:4860::8888 --dport 53 --sport 1024:65535
 # $ip6t -A OUTPUT -p udp -d 2001:4860:4860::8888 --dport 53 --sport 1024:65535
-
-$ipt -A INPUT -p tcp --dport 8302 -j ACCEPT
-$ip6t -A INPUT -p tcp --dport 8302 -j ACCEPT
 
 $ipt -A INPUT -p tcp --dport '"$SSHPort"' -j ACCEPT
 
