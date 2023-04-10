@@ -173,9 +173,9 @@ $ipt -A INPUT -p tcp --dport '"$SSHPort"' -j ACCEPT
 
 $ip6t -A INPUT -p tcp --dport '"$SSHPort"' -j ACCEPT
 
-$ipt -A INPUT -p tcp --dport '"$OpenPorts"' -j ACCEPT
+$ipt -A INPUT -p tcp -m multiport --dports '"$OpenPorts"' -j ACCEPT
 
-$ip6t -A INPUT -p tcp --dport '"$OpenPorts"' -j ACCEPT ' > /etc/network/if-up.d/iptables-rules
+$ip6t -A INPUT -p tcp -m multiport --dports '"$OpenPorts"' -j ACCEPT ' > /etc/network/if-up.d/iptables-rules
 
 
 bash /etc/network/if-up.d/iptables-rules
